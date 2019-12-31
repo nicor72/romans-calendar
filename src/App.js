@@ -2,7 +2,7 @@ import React from 'react'
 import './App.css'
 import "rbx/index.css"
 import { Content, Title, Container, Button, Column, Notification } from "rbx"
-const { format, getDayOfYear } = require('date-fns')
+const { getDayOfYear } = require('date-fns')
 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
 // Devuelve la serie de numeros con los dias disponibles del año
@@ -30,25 +30,28 @@ function App() {
       <Container>
         <Content>
           <Column className="has-text-centered">
-            <span>🎃</span>
+            <span role="img" aria-label="hallowen">🎃</span>
           </Column>
           <Title className="has-text-white has-text-centered">El Calendario de los Romanes</Title>
 
-          <Notification color="danger">
-          <Title size={4} className="has-text-white has-text-centered">Proxima ultima fiesta de los romanes</Title>
-            <p className="has-text-centered">Viernes 3, de enero de 2020</p>
-            <p className="has-text-centered">Agendada!</p>
-            <Column className="has-text-centered">
-              <iframe 
-                src="https://giphy.com/embed/RHHRiuo1Q79IULEMO8" 
-                width="480" 
-                height="480" 
-                frameBorder="0" 
-                className="giphy-embed"
-                allowFullScreen
-              ></iframe>
-            </Column>
-          </Notification>
+          <Column size="half" offset="one-quarter">
+            <Notification color="danger">
+              <Title size={4} className="has-text-white has-text-centered">Proxima ultima fiesta de los romanes</Title>
+              <p className="has-text-centered">Viernes 3, de enero de 2020</p>
+              <p className="has-text-centered">Agendada!</p>
+              <Column className="has-text-centered">
+                <iframe 
+                  title="devil"
+                  src="https://giphy.com/embed/RHHRiuo1Q79IULEMO8" 
+                  width="480" 
+                  height="480" 
+                  frameBorder="0" 
+                  className="giphy-embed"
+                  allowFullScreen
+                ></iframe>
+              </Column>
+            </Notification>
+          </Column>
 
           <p>
             A continuación un listado de los días disponibles de los romanes Miguel y Jaime. Click para agendar, OH YEAH!:
@@ -60,6 +63,7 @@ function App() {
                   <a 
                     href={`https://wa.me/56956269654?text=Hola%20cabros!!%20tienen%20hora%20para%20el%20${new Date('2020', 0, day).toLocaleDateString('es-MX', options)[0].toUpperCase()}${new Date('2020', 0, day).toLocaleDateString('es-MX', options).slice(1)}%20a%20las%2020??`}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
 
                     <Button color="dark">
@@ -74,6 +78,7 @@ function App() {
           </ul>
           <Column className="has-text-centered">
             <iframe 
+              title="spaceship"
               src="https://giphy.com/embed/3oEdv2B4bcxkW71AQM" 
               width="480" 
               height="480" 
