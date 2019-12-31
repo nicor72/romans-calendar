@@ -3,6 +3,10 @@
     padding: 2em;
 }
 
+img {
+    background: black;
+}
+
 ul {
     margin: 0 !important;
 }

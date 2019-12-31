@@ -50,6 +50,17 @@ function App() {
                   allowFullScreen
                 ></iframe>
               </Column>
+
+              <Column className="has-text-centered">
+                <p className="has-text-centered">EN:</p>
+                <a 
+                  href="https://www.google.com/maps/place/REDROOM+PRODUCCIONES/@-33.4456043,-70.6244121,15z/data=!4m5!3m4!1s0x0:0xb739d02294dd4a25!8m2!3d-33.4456043!4d-70.6244121?hl=en-US"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src="http://redroomproducciones.cl/images/logo.png"></img>
+                </a>
+              </Column>
             </Notification>
           </Column>
 
