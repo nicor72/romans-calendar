@@ -1,15 +1,22 @@
 import React from 'react'
 import './App.css'
-import "rbx/index.css"
-import { Content, Title, Container, Button, Column, Notification } from "rbx"
-const { getDayOfYear } = require('date-fns')
+import 'rbx/index.css'
+import { Content, Title, Container, Button, Column, Notification } from 'rbx'
+import { getDayOfYear } from 'date-fns'
+
+// opciones para el formato de la fecha
 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
-// Devuelve la serie de numeros con los dias disponibles del año
+// Devuelve la serie de números con los días disponibles del año
 // la serie parte en 4
 const getNextAvailableDay = (n = 4) => {
   const sum = n % 2 ? 7 : 1
   return n + sum
+}
+
+const getFormatDate = (day) => {
+  const date = new Date('2020', 0, day).toLocaleDateString('es-MX', options)
+  return `${date[0].toUpperCase()}${date.slice(1)}`
 }
  
 function App() {
@@ -21,8 +28,7 @@ function App() {
     availablesDays.push(day)
   }
 
-  const currentDay = 1
-  // const currentDay = getDayOfYear(new Date())
+  const currentDay = getDayOfYear(new Date())
   availablesDays = availablesDays.filter(day => day >= currentDay)
 
   return (
@@ -36,9 +42,9 @@ function App() {
 
           <Column size="half" offset="one-quarter">
             <Notification color="danger">
-              <Title size={4} className="has-text-white has-text-centered">Proxima ultima fiesta de los romanes</Title>
-              <p className="has-text-centered">Viernes 3, de enero de 2020</p>
-              <p className="has-text-centered">Agendada!</p>
+              <Title size={4} className="has-text-white has-text-centered">Próxima Última fiesta de los Romanes</Title>
+              <p className="has-text-centered">Lunes 13, de enero de 2020</p>
+              <p className="has-text-centered">No Agendada aún!</p>
               <Column className="has-text-centered">
                 <iframe 
                   title="devil"
@@ -69,22 +75,25 @@ function App() {
           </p>
           <ul className="grid-days">
           {
-            availablesDays.map((day, i) => 
-                <Column key={i} className="has-text-centered">
-                  <a 
-                    href={`https://wa.me/56956269654?text=Hola%20cabros!!%20tienen%20hora%20para%20el%20${new Date('2020', 0, day).toLocaleDateString('es-MX', options)[0].toUpperCase()}${new Date('2020', 0, day).toLocaleDateString('es-MX', options).slice(1)}%20a%20las%2020??`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+            availablesDays.map((day, i) => {
 
-                    <Button color="dark">
-                      {
-                        `${new Date('2020', 0, day).toLocaleDateString('es-MX', options)[0].toUpperCase()}${new Date('2020', 0, day).toLocaleDateString('es-MX', options).slice(1)}`
-                      }
-                    </Button>
-                  </a>
-                </Column>
-            )
+              const formatDate = getFormatDate(day)
+
+              return <Column key={i} className="has-text-centered">
+                <a 
+                  href={`https://wa.me/56956269654?text=Hola%20cabros!!%20tienen%20hora%20para%20el%20${formatDate}%20a%20las%2020??`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+
+                  <Button color="dark">
+                    {
+                      formatDate
+                    }
+                  </Button>
+                </a>
+              </Column>
+            })
           }
           </ul>
           <Column className="has-text-centered">
